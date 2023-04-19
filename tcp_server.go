@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 	"sync"
-    "github.com/Sindreln/is105sem03/mycrypt"
+    "github.com/uia-worker/is105sem03/mycrypt"
 )
 
 func main() {
