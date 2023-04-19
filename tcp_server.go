@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"sync"
+    "github.com/Sindreln/is105sem03/mycrypt"
 )
 
 func main() {
@@ -39,8 +40,10 @@ func main() {
 					switch msg := string(buf[:n]); msg {
   				        case "ping":
 						_, err = c.Write([]byte("pong"))
-					default:
-						_, err = c.Write(buf[:n])
+				        default:
+						dekryptertMelding := mycrypt.Krypter([]rune(string(buf[:n])), mycrypt.ALF_SEM03, len(mycrypt.ALF_SEM03)-4)
+						log.Println("Dekryptert melding: ", string(dekryptertMelding))
+						_, err = c.Write([]byte(string(dekryptertMelding)))
 					}
 					if err != nil {
 						if err != io.EOF {
